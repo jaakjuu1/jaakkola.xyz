@@ -1,0 +1,32 @@
+---
+const { title, description } = Astro.props;
+import ThreeJSAnimation from "../components/ThreeJSAnimation.astro";
+import "../styles/tailwind.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <!-- <link rel="stylesheet" href="/styles/global.css"> -->
+  </head>
+  <body>
+    <div class="background-animation">
+      <ThreeJSAnimation client:load />
+    </div>
+    <header>
+      <nav>
+        <!-- Navigation links -->
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <!-- Footer content -->
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+---
+// Import necessary modules
+import MainLayout from '../layouts/MainLayout.astro';
+import { getSignedUrl } from '../utils/s3';
+import Stripe from 'stripe';
+
+// Initialize Stripe
+const stripe = new Stripe(`${import.meta.env.STRIPE_SECRET_KEY}`, { apiVersion: '2024-06-20' });
+
+// Fetch session data
+const url = new URL(Astro.request.url);
+const sessionId = url.searchParams.get('session_id');
+let session, downloadUrl, errorMessage;
+
+if (sessionId) {
+  try {
+    session = await stripe.checkout.sessions.retrieve(sessionId);
+    if (session.payment_status === 'paid') {
+      downloadUrl = getSignedUrl('CRM Integration.zip');
+    } else {
+      errorMessage = 'Payment not verified';
+    }
+  } catch (error) {
+    errorMessage = 'Error retrieving session';
+  }
+} else {
+  errorMessage = 'Session ID not found';
+}
+---
+
+<MainLayout title="Success Page" description="Payment successful">
+    <h1>Success Page</h1>
+    {sessionId ? (
+      session ? (
+        session.payment_status === 'paid' ? (
+          <div>
+            <p>Payment successful!</p>
+            <a href={downloadUrl}>Download your file</a>
+          </div>
+        ) : (
+          <p>{errorMessage}</p>
+        )
+      ) : (
+        <p>{errorMessage}</p>
+      )
+    ) : (
+      <p>{errorMessage}</p>
+    )}
+</MainLayout>

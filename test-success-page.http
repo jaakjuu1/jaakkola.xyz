@@ -1,0 +1,5 @@
+### Test Success Page
+GET http://localhost:4321/success
+Accept: application/json
+
+###
