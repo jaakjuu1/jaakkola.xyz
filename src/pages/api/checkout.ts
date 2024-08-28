@@ -8,8 +8,8 @@ const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY, {
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.formData();
-    const email = data.get('email');
-    const productId = data.get('productId');
+    const email = data.get('email') as string;
+    const productId = data.get('productId') as string;
 
     // Validate the data
     if (!email || !productId) {
