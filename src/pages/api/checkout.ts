@@ -29,8 +29,8 @@ export const POST: APIRoute = async ({ request }) => {
         },
       ],
       mode: 'payment',
-      success_url: 'http://localhost:4321/success?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'http://localhost:4321/cancel',
+      success_url: `${import.meta.env.SITE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${import.meta.env.SITE_URL}/cancel`,
     });
 
     return new Response(JSON.stringify({ id: session.id }), {
