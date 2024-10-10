@@ -11,7 +11,7 @@ export default defineConfig({
   },
   output: 'server',
   adapter: node({
-    mode: 'production',
+    mode: 'standalone',
   }),
   integrations: [react(), tailwind({ config: { applyBaseStyles: false }})]
 });
