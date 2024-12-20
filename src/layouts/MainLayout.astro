@@ -2,6 +2,7 @@
 const { title, description } = Astro.props;
 import NorthernLights from "../components/NorthernLights.astro";
 import "../styles/tailwind.css";
+import AudioController from '../components/AudioController';
 ---
 
 <!doctype html>
@@ -28,5 +29,6 @@ import "../styles/tailwind.css";
     <footer>
       <!-- Footer content -->
     </footer>
+    <AudioController client:load />
   </body>
 </html>

@@ -18,7 +18,7 @@ export interface HintSet {
 export const hintSets: Record<string, HintSet> = {
   christmas2023: {
     id: "christmas2023",
-    initialPassword: "joulupukki",
+    initialPassword: "jul23",
     name: "Joulun Arvoitukset 2023",
     hints: {
       hint1: {
