@@ -2,10 +2,11 @@ import { useState } from 'react';
 
 interface PasswordFormProps {
     currentHintId?: string;
+    hintSetId?: string;
     isFinal?: boolean;
 }
 
-export default function PasswordForm({ currentHintId, isFinal = false }: PasswordFormProps) {
+export default function PasswordForm({ currentHintId, hintSetId, isFinal = false }: PasswordFormProps) {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -23,7 +24,8 @@ export default function PasswordForm({ currentHintId, isFinal = false }: Passwor
                 },
                 body: JSON.stringify({ 
                     password,
-                    currentHintId 
+                    currentHintId,
+                    hintSetId
                 }),
             });
 
@@ -36,15 +38,18 @@ export default function PasswordForm({ currentHintId, isFinal = false }: Passwor
                     setTimeout(() => {
                         window.location.href = '/success';
                     }, 2000);
+                } else if (data.hintSetId) {
+                    // Initial password was correct, refresh to show first hint
+                    window.location.reload();
                 } else {
-                    // Refresh the page to show the next hint
+                    // Answer was correct, refresh to show next hint
                     window.location.reload();
                 }
             } else {
-                setError(data.message || 'Incorrect answer. Try again!');
+                setError(data.message || 'Väärä vastaus. Yritä uudelleen!');
             }
         } catch (error) {
-            setError('Something went wrong. Please try again.');
+            setError('Järjestelmävirhe. Yritä myöhemmin uudelleen.');
         }
     };
 
@@ -53,7 +58,7 @@ export default function PasswordForm({ currentHintId, isFinal = false }: Passwor
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                     <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                        {isFinal ? 'Enter your answer' : 'Enter the password'}
+                        {isFinal ? 'Anna vastauksesi' : 'Anna salasana'}
                     </label>
                     <input
                         type="text"
@@ -74,7 +79,7 @@ export default function PasswordForm({ currentHintId, isFinal = false }: Passwor
                     type="submit"
                     className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                    Submit
+                    Lähetä
                 </button>
             </form>
         </div>

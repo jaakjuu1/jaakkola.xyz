@@ -12,9 +12,6 @@ footer {
 nav {
   @apply flex justify-between items-center;
 }
-main {
-  /* @apply p-8; */
-}
 header {
   @apply top-0;
 }
