@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -49,4 +50,66 @@ main {
   position: relative;
   z-index: 1;
   @apply px-4;
+}
+
+@layer components {
+  .font-christmas {
+    font-family: 'Mountains of Christmas', cursive;
+  }
+}
+
+@layer utilities {
+  .animate-fall {
+    animation: snowfall 10s linear infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .animate-success {
+    animation: success 0.5s ease-in-out;
+  }
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-100%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px #fff3, 0 0 20px #f003, 0 0 30px #ff03;
+  }
+  to {
+    box-shadow: 0 0 20px #fff3, 0 0 30px #f003, 0 0 40px #ff03;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes success {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.text-gold {
+  color: #FFD700;
+}
+
+.border-gold {
+  border-color: #FFD700;
 }
