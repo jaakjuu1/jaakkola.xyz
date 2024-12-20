@@ -1,0 +1,52 @@
+---
+import type { Hint } from '../config/hints';
+import MainLayout from '../layouts/MainLayout.astro';
+import PasswordForm from './PasswordForm';
+
+interface Props {
+    hint: Hint;
+    isLastHint: boolean;
+}
+
+const { hint, isLastHint } = Astro.props;
+---
+
+<MainLayout title={hint.title} description={hint.description}>
+    <div class="flex flex-col items-center justify-center min-h-screen py-12 px-4">
+        <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg">
+            <div class="text-center">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">
+                    {hint.title}
+                </h1>
+                <p class="text-xl text-gray-600 mb-8">
+                    {hint.description}
+                </p>
+            </div>
+            
+            <div class="prose prose-lg">
+                <p class="text-gray-800">
+                    Here's your riddle:
+                </p>
+                <blockquote class="italic text-gray-700 border-l-4 border-blue-500 pl-4 my-4">
+                    {hint.riddle}
+                </blockquote>
+                
+                {!isLastHint ? (
+                    <div class="mt-8">
+                        <p class="text-sm text-gray-600 mb-4">
+                            When you think you know the answer, enter it below to proceed to the next hint:
+                        </p>
+                        <PasswordForm client:load currentHintId={hint.id} />
+                    </div>
+                ) : (
+                    <div class="mt-8">
+                        <p class="text-sm text-gray-600 mb-4">
+                            This is the final hint! Enter your answer below to complete the treasure hunt:
+                        </p>
+                        <PasswordForm client:load currentHintId={hint.id} isFinal={true} />
+                    </div>
+                )}
+            </div>
+        </div>
+    </div>
+</MainLayout> 

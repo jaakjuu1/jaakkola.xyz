@@ -1,49 +1,48 @@
 ---
-// Import necessary modules
 import MainLayout from '../layouts/MainLayout.astro';
-import { getSignedUrl } from '../utils/s3';
-import Stripe from 'stripe';
 
-// Initialize Stripe
-const stripe = new Stripe(`${import.meta.env.STRIPE_SECRET_KEY}`, { apiVersion: '2024-06-20' });
+// Check if the treasure hunt is completed
+const completionToken = Astro.cookies.get('treasure_complete')?.value;
 
-// Fetch session data
-const url = new URL(Astro.request.url);
-const sessionId = url.searchParams.get('session_id');
-let session, downloadUrl, errorMessage;
-
-if (sessionId) {
-  try {
-    session = await stripe.checkout.sessions.retrieve(sessionId);
-    if (session.payment_status === 'paid') {
-      downloadUrl = getSignedUrl('CRM Integration.zip');
-    } else {
-      errorMessage = 'Payment not verified';
-    }
-  } catch (error) {
-    errorMessage = 'Error retrieving session';
-  }
-} else {
-  errorMessage = 'Session ID not found';
+// If not completed, redirect to home
+if (!completionToken) {
+    return Astro.redirect('/');
 }
 ---
 
-<MainLayout title="Success Page" description="Payment successful">
-    <h1>Success Page</h1>
-    {sessionId ? (
-      session ? (
-        session.payment_status === 'paid' ? (
-          <div>
-            <p>Payment successful!</p>
-            <a href={downloadUrl}>Download your file</a>
-          </div>
-        ) : (
-          <p>{errorMessage}</p>
-        )
-      ) : (
-        <p>{errorMessage}</p>
-      )
-    ) : (
-      <p>{errorMessage}</p>
-    )}
+<MainLayout title="Congratulations!" description="You've completed the treasure hunt!">
+    <div class="flex flex-col items-center justify-center min-h-screen py-12 px-4">
+        <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg text-center">
+            <div class="mb-8">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                    🎉 Congratulations! 🎉
+                </h1>
+                <p class="text-xl text-gray-600">
+                    You've successfully completed the treasure hunt!
+                </p>
+            </div>
+            
+            <div class="prose prose-lg mx-auto">
+                <p class="text-gray-700">
+                    You've proven yourself to be a master of riddles and puzzles. 
+                    Thank you for participating in our treasure hunt!
+                </p>
+                
+                <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                    <p class="text-blue-800 font-medium">
+                        "The real treasure was the journey and the knowledge gained along the way."
+                    </p>
+                </div>
+                
+                <div class="mt-8">
+                    <a 
+                        href="/" 
+                        class="inline-block bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 transition-colors"
+                    >
+                        Start a New Hunt
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </MainLayout>
