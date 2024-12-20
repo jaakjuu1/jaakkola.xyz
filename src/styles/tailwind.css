@@ -3,41 +3,50 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-900 ;
-}
-header,
-footer {
-  @apply bg-gray-800 p-4 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-lg absolute w-full;
-}
-nav {
-  @apply flex justify-between items-center;
-}
-header {
-  @apply top-0;
-}
-footer {
-  @apply bottom-0 fixed;
-}
-body {
+  @apply bg-gray-900;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
+  overflow-y: auto;
+}
+
+header {
+  @apply bg-gray-800 p-4 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-lg w-full top-0;
+  position: fixed;
+  z-index: 10;
+}
+
+footer {
+  @apply bg-gray-800 p-4 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-lg w-full bottom-0;
+  position: fixed;
+  z-index: 10;
+}
+
+nav {
+  @apply flex justify-between items-center;
 }
 
 main {
+  @apply flex flex-col items-center justify-center;
   flex: 1;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  position: relative;
+  z-index: 1;
 }
 
-
 .background-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
 .content {
   position: relative;
   z-index: 1;
+  @apply px-4;
 }
