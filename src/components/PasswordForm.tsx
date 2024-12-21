@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { hintSets, type Hint } from "../config/hints";
 import { FaSnowflake, FaGift } from 'react-icons/fa';
 import confetti from 'canvas-confetti';
 import { playFireworks } from '../utils/soundEffects';
+import { processHintImage } from '../utils/imageProcessing.ts';
 
 interface PasswordFormProps {
   currentHintId?: string;
@@ -10,29 +11,90 @@ interface PasswordFormProps {
   isFinal?: boolean;
 }
 
+interface StoredHintState {
+  hintId: string;
+  hintSetId: string;
+  displayCount: number;
+}
+
 export default function PasswordForm({
   currentHintId,
   hintSetId: initialHintSetId,
-  isFinal = false,
 }: PasswordFormProps) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  
   const [currentHintState, setCurrentHintState] = useState<{
     hint: Hint | null;
     hintSetId: string | null;
-  }>({
-    hint: initialHintSetId && currentHintId 
-      ? hintSets[initialHintSetId]?.hints[currentHintId] 
-      : null,
-    hintSetId: initialHintSetId || null
+  }>(() => {
+    if (typeof window !== 'undefined') {
+      const savedState = localStorage.getItem('hintState');
+      if (savedState) {
+        const parsed: StoredHintState = JSON.parse(savedState);
+        const hint = parsed.hintSetId ? hintSets[parsed.hintSetId]?.hints[parsed.hintId] : null;
+        return {
+          hint,
+          hintSetId: parsed.hintSetId
+        };
+      }
+    }
+    return {
+      hint: initialHintSetId && currentHintId 
+        ? hintSets[initialHintSetId]?.hints[currentHintId] 
+        : null,
+      hintSetId: initialHintSetId || null
+    };
   });
+
+  useEffect(() => {
+    async function loadHintImage() {
+      if (currentHintState.hint) {
+        const processedHint = await processHintImage(currentHintState.hint);
+        if (processedHint.imageUrl !== currentHintState.hint.imageUrl) {
+          setCurrentHintState(prev => ({
+            ...prev,
+            hint: processedHint
+          }));
+        }
+        setImageUrl(processedHint.imageUrl || null);
+      }
+    }
+
+    loadHintImage();
+  }, [currentHintState.hint?.id]);
+
+  const updateHintState = async (newHint: Hint | null, newHintSetId: string | null) => {
+    if (newHint) {
+      const processedHint = await processHintImage(newHint);
+      setCurrentHintState({
+        hint: processedHint,
+        hintSetId: newHintSetId
+      });
+      setImageUrl(processedHint.imageUrl || null);
+      
+      if (typeof window !== 'undefined' && newHintSetId) {
+        localStorage.setItem('hintState', JSON.stringify({
+          hintId: processedHint.id,
+          hintSetId: newHintSetId,
+          displayCount: (processedHint.displayCount || 0) + 1
+        }));
+      }
+    } else {
+      setCurrentHintState({
+        hint: null,
+        hintSetId: newHintSetId
+      });
+      setImageUrl(null);
+    }
+  };
 
   const fireConfetti = () => {
     const duration = 3000;
     const animationEnd = Date.now() + duration;
     
-    // Play firework sounds
     playFireworks();
     
     const defaults = { 
@@ -58,7 +120,6 @@ export default function PasswordForm({
 
       const particleCount = 50 * (timeLeft / duration);
       
-      // Launch confetti from multiple points
       confetti({
         ...defaults,
         particleCount,
@@ -95,30 +156,26 @@ export default function PasswordForm({
       const data = await response.json();
 
       if (data.success) {
-        // Fire confetti immediately when answer is correct
         fireConfetti();
 
         if (data.isComplete) {
           setSuccess(data.message);
+          if (typeof window !== 'undefined') {
+            localStorage.removeItem('hintState');
+          }
           setTimeout(() => {
             window.location.href = "/success";
-          }, 3000); // Increased delay to see confetti
+          }, 3000);
         } else if (data.hintSetId) {
           const firstHint = hintSets[data.hintSetId].hints.hint1;
-          setCurrentHintState({
-            hint: firstHint,
-            hintSetId: data.hintSetId
-          });
+          updateHintState(firstHint, data.hintSetId);
           setSuccess('Oikein! Tervetuloa seikkailuun.');
           setPassword('');
         } else {
           const nextHintId = currentHintState.hint?.nextHintId;
           if (nextHintId && currentHintState.hintSetId) {
             const nextHint = hintSets[currentHintState.hintSetId].hints[nextHintId];
-            setCurrentHintState({
-              ...currentHintState,
-              hint: nextHint
-            });
+            updateHintState(nextHint, currentHintState.hintSetId);
             setSuccess(data.message);
             setPassword('');
           }
@@ -161,6 +218,17 @@ export default function PasswordForm({
               </p>
             </div>
             
+            {imageUrl && (
+              <div className="w-full flex justify-center my-4">
+                <img
+                  src={imageUrl}
+                  alt="Hint Image"
+                  className="max-w-full h-auto rounded-lg shadow-xl"
+                  style={{ maxHeight: '400px' }}
+                />
+              </div>
+            )}
+            
             <div className="prose prose-lg">
               <p className="text-gold font-christmas text-2xl text-center">
                 Tässä arvoituksesi:
@@ -199,7 +267,19 @@ export default function PasswordForm({
             />
           </div>
           {error && <p className="text-red-400 text-lg font-medium animate-shake">{error}</p>}
-          {success && <p className="text-green-300 text-lg font-medium animate-success">{success}</p>}
+          {success && (
+            <p 
+              className="text-green-300 text-lg font-medium opacity-0 transition-opacity duration-[3000ms] ease-out"
+              style={{ animation: 'fadeIn 0ms forwards', opacity: 1 }}
+              onAnimationEnd={() => {
+                setTimeout(() => {
+                  setSuccess("");
+                }, 3000);
+              }}
+            >
+              {success}
+            </p>
+          )}
           <button
             type="submit"
             className="w-full bg-gradient-to-r from-red-600 to-red-700 text-white py-4 px-6 rounded-lg hover:from-red-700 hover:to-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 text-xl font-christmas transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:translate-y-0"

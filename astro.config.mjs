@@ -13,5 +13,13 @@ export default defineConfig({
   adapter: node({
     mode: 'standalone',
   }),
+  vite: {
+    define: {
+      'global': 'globalThis',
+    },
+    ssr: {
+      noExternal: ['@aws-sdk/*']
+    }
+  },
   integrations: [react(), tailwind({ config: { applyBaseStyles: false }})]
 });
