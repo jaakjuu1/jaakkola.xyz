@@ -20,74 +20,6 @@ export interface HintSet {
 }
 
 export const hintSets: Record<string, HintSet> = {
-  christmas2023: {
-    id: "christmas2023",
-    initialPassword: "jul23",
-    name: "Joulun Arvoitukset 2023",
-    hints: {
-      hint1: {
-        id: "hint1",
-        title: "Ensimmäinen Vihje",
-        description: "Tervetuloa joulun arvoitusten pariin!",
-        riddle:
-          "Punainen takki, valkoinen parta, tonttujen pomo ja lasten kaveri. Kuka olen?",
-        answer: "joulupukki",
-        nextHintId: "hint2",
-      },
-      hint2: {
-        id: "hint2",
-        title: "Toinen Vihje",
-        description: "Hienoa! Löysit toisen vihjeen.",
-        riddle:
-          "Roikkuu katossa, välkkyy ja loistaa, joulun tunnelman kotiin tuo. Mikä se on?",
-        answer: "jouluvalo",
-        nextHintId: "hint3",
-      },
-      hint3: {
-        id: "hint3",
-        title: "Viimeinen Vihje",
-        description: "Olet melkein perillä!",
-        riddle:
-          "Vihreät havut, punaiset nauhat, tähti latvassa loistaa. Mikä se on?",
-        answer: "joulukuusi",
-        nextHintId: null,
-        finalAnswer: "joulukuusi",
-      },
-    },
-  },
-  birthday2024: {
-    id: "birthday2024",
-    initialPassword: "synttarit",
-    name: "Syntymäpäivä Seikkailu 2024",
-    hints: {
-      hint1: {
-        id: "hint1",
-        title: "Ensimmäinen Vihje",
-        description: "Tervetuloa syntymäpäiväseikkailuun!",
-        riddle:
-          "Makea yllätys, kynttilöitä päällä, kaikki haluaa palan tästä. Mikä se on?",
-        answer: "kakku",
-        nextHintId: "hint2",
-      },
-      hint2: {
-        id: "hint2",
-        title: "Toinen Vihje",
-        description: "Hyvä, jatketaan eteenpäin!",
-        riddle: "Värikäs paperi repeää, yllätys sisältä löytyy. Mikä se on?",
-        answer: "lahja",
-        nextHintId: "hint3",
-      },
-      hint3: {
-        id: "hint3",
-        title: "Viimeinen Vihje",
-        description: "Viimeinen tehtävä!",
-        riddle: "Ilmalla täytetty, narusta kiinni, kattoon nousee. Mikä se on?",
-        answer: "ilmapallo",
-        nextHintId: null,
-        finalAnswer: "ilmapallo",
-      },
-    },
-  },
   joulu24: {
     id: "joulu24",
     initialPassword: "joulu24",
@@ -362,6 +294,143 @@ export const hintSets: Record<string, HintSet> = {
           "An abstract image of quantum foam: swirling energy and tiny, flickering lights at an almost unimaginably small scale, representing the fabric of spacetime.",
         nextHintId: null,
         finalAnswer: "planckin pituus",
+      },
+    },
+  },
+  pikkujoulu: {
+    id: "pikkujoulu",
+    initialPassword: "saturnalia",
+    name: "Pikkujoulun Arvoitukset",
+    hints: {
+      hint1: {
+        id: "hint1",
+        answer: "esseenit",
+        title: "Mistä kaikki alkoi?",
+        description:
+          "Tarina vie meidät aikaan, jolloin kaikki oli vielä muotoutumassa. Pohdimme perustavanlaatuista kysymystä: Mihin uskonnolliseen yhteisöön kuului nuori perhe, jonka lapsesta tuli yksi historian tunnetuimmista hahmoista?",
+        riddle:
+          "Etsi historiallista tietoa siitä, mihin uskonnolliseen ryhmään Jeesus Nasaretilainen ja hänen vanhempansa Joosef ja Maria kuuluivat. Mikä oli heidän uskonnollinen taustansa?",
+        imagePrompt:
+          "A softly lit, ancient Middle Eastern village at dusk, a modest family dwelling in the background, evoking a sense of biblical history.",
+        nextHintId: "hint2",
+      },
+
+      hint2: {
+        id: "hint2",
+        answer: "888",
+        title: "Nimen Salainen Lukuarvo",
+        description:
+          "Muinaisina aikoina kirjaimet eivät olleet pelkkiä äänteitä – niihin kätkeytyi lukuarvoja. Kreikan aakkosia hyödyntävässä gematriassa nimien ja sanojen merkillisyys voidaan paljastaa numeroiden kautta. Tietyllä nimellä, joka on ehkä yksi maailman tunnetuimmista, on hyvin erityinen lukuarvo.",
+        riddle:
+          "Tutki kreikkalaista gematriaa(isopsephia) ja etsi, kuinka Jeesuksen nimi (kreikaksi Iēsous) muodostuu numeroiksi. Laske kirjainten yhteenlaskettu arvo. Mikä on tämä kuuluisa luku?",
+        imagePrompt:
+          "An ancient scroll with Greek letters in neat rows, faint numeric symbols next to each letter, suggesting hidden numerical mysteries.",
+        nextHintId: "hint3",
+      },
+
+      hint3: {
+        id: "hint3",
+        answer: "analemma",
+        title: "Korkeimman Yön Arvoitus",
+        description:
+          "Talvipäivänseisauksen aika on pohjoisella pallonpuoliskolla vuoden pimein. Silti moni huomaa, että vuoden aikaisin auringonlasku osuu kalenterissa eri päivälle kuin vuoden myöhäisin auringonnousu. Tämä näennäinen ristiriita on kiehtonut tähtitieteilijöitä vuosisatojen ajan.",
+        riddle:
+          "Jos valokuvaisit Auringon sijainnin täsmälleen samaan kellonaikaan jokaisena vuoden päivänä, piirtyisi taivaalle kahdeksikon muotoinen kuvio. Tämä ilmentää Maan akselikallistuksen ja radan elliptisyyden yhteisvaikutusta sekä selittää, miksi pimein päivä ei ole sama kuin aikaisin auringonlasku. Mikä on tämän kuvion nimi?",
+        imagePrompt:
+          "A sequence of sun positions forming a figure-eight pattern across the sky over the course of a year, showing different heights and horizontal shifts.",
+        nextHintId: "hint4",
+      },
+
+      hint4: {
+        id: "hint4",
+        answer: "400–700",
+        title: "Valon Näkymätön Kirjo",
+        description:
+          "Kylmän talven keskellä ihmissilmä nauttii jokaisesta valonsäteestä. Mutta silmämme voivat havaita vain pienen osan kaikesta säteilystä. Tällä välillä värien sinfonia soi, mutta aistimme ei ole luotu enempään... vai onko se?",
+        riddle:
+          "Mikä on suunnilleen se aallonpituusalue (nanometreinä), jolla ihmiselle näkyvä valo esiintyy? (Vinkki: Vastaa muodossa 'xxx–yyy'.)",
+        imagePrompt:
+          "A prism splitting a bright beam of light into a vivid rainbow spectrum over a dark background.",
+        nextHintId: "hint5",
+      },
+
+      hint5: {
+        id: "hint5",
+        answer: "sadalsuud",
+        title: "Miten määrittää uusi aikakausi?",
+        description:
+          "Kun puhutaan kalojen ajasta ja vesimiehen ajasta, kiistellään usein siitä, milloin raja oikeasti ylittyy. Jotkut katsovat vain Maapallon prekession ajallista sykliä, toiset seuraavat tähtikarttaa vielä tarkemmin. Löydätkö tiedon siitä, minkä kirkkaan tähden kautta jotkut astrologit arvioivat, että siirtymä tapahtuu?",
+        riddle:
+          "Etsi tietoa niistä astrologisista näkemyksistä, joissa uusi aikakausi alkaa, kun kevätpäiväntasaus linjautuu tiettyyn vesimiehen tähteen. Tätä Beta Aquarii -nimellä tunnettua tähteä kutsutaan myös arabialaisella nimellä, joka merkitsee 'suotuisaa onnea'. Mikä on kyseisen tähden nimi?",
+        imagePrompt:
+          "A star map highlighting the constellation Aquarius, focusing on a single bright point labeled Beta Aquarii, with ancient celestial artwork faintly visible.",
+        nextHintId: "hint6",
+      },
+
+      hint6: {
+        id: "hint6",
+        answer: "25920 vuotta",
+        title: "Prekession Suuri Kierto",
+        description:
+          "Astrologinen aikakausi viittaa maapallon prekessioon, tähtien hitaaseen siirtymään taivaalla. Tämä liike piirtää taivaalle jättimäisen kellon, jota mitataan vuosituhansien sykleissä. Syklin pituus selviää, kun tutkit niin kutsuttua ’isoa vuotta’.",
+        riddle:
+          "Etsi tietoa maapallon prekessiosta. Kuinka monta vuotta (pyöreästi) kestää, että Maan akseli tekee yhden täyden kierroksen eli ’ison vuoden’?",
+        imagePrompt:
+          "An ancient star map depicting the Earth’s axial tilt and a grand cycle of constellations encircling the celestial sphere.",
+        nextHintId: "hint7",
+      },
+
+      hint7: {
+        id: "hint7",
+        answer: "cseti",
+        title: "Laajeneminen Hynekin Rajojen Yli",
+        description:
+          "Tähtitieteilijä J. Allen Hynek loi kuuluisan asteikon, jolla UFO-havainnot jaetaan eri läheisyyden tasoihin. Vielä 1900-luvun loppupuolella eräs amerikkalainen lääkäri laajensi tätä mallia uuteen suuntaan: hän ei pitänyt ihmistä pelkkänä sivustaseuraajana, vaan arveli, että voimme tietoisesti kutsua ja kohdata mahdollisia ulkoavaruuden vieraita.",
+        riddle:
+          "Etsi historian kätköistä tieto amerikkalaisesta ensiapulääkäristä, joka jätti työnsä 1990-luvun alussa omistaakseen elämänsä meditatiivisille menetelmille ja 'universaalille diplomatialle'. Millä termillä hän kutsui sen ympärille luotua organisaatiota?",
+        imagePrompt:
+          "A silent clearing under a magnificent starry sky, with several people sitting in a focused circle, faint beams or orbs visible overhead as if responding to a call.",
+        nextHintId: "hint8",
+      },
+
+      hint8: {
+        id: "hint8",
+        answer: "9.6.1983",
+        title: "Aivot, Satunnaisuus ja Valtion Salaisuudet",
+        description:
+          "Etsimme jatkuvasti ulkoisia mysteerejä, mutta yksi kiehtovimmista arvoituksista saattaa piillä omassa tietoisuudessamme. Kuinka mieli vaikuttaa todennäköisyyksiin? Voiko ajatuksemme muuttaa satunnaisia tuloksia? Näitä kysymyksiä on pohdittu syvällisesti jopa korkean tason virastoissa. Yksi merkittävä asiakirja, joka käsittelee ihmispsyykeen ja havaintojen rajojen tutkimista, on peräisin eräästä yllättävästä lähteestä...",
+        riddle:
+          "CIA teetti tutkimuksen, joka käsittelee tietoisuuden ja todellisuuden välistä suhdetta sekä viittaa koeasetelmiin, joissa mahdollisesti testattiin mielen vaikutusta satunnaisuuteen. Selvitä, minä päivämääränä tämä muistio (alkuperäinen päiväys) on päivätty. Anna vastauksesi muodossa (1.1.2000).",
+        imagePrompt:
+          "A dimly lit archive room lined with metal filing cabinets, a single folder on a wooden desk titled 'Classified', faintly illuminated by a desk lamp.",
+        nextHintId: "hint9",
+      },
+
+      hint9: {
+        id: "hint9",
+        answer: "2",
+        title: "Kehityksen Koodinvaihdunta",
+        description:
+          "Kun katsot peiliin, näet menneisyyden ja tulevaisuuden risteyskohdan. Ihmisen genomi kätkee sisälleen tarinan, jossa kahden kromosomin sulautuminen on nostettu esiin mahdollisena käännekohtana lajimme kehityksessä. Teoria herättää kysymyksen: mitä oikein tapahtui, ja milloin?",
+        riddle:
+          "Ota selvää ihmisen ja muiden kädellisten geneettisistä eroista. Millä kromosomilla on havaittavissa merkkejä muinaisen fuusion tapahtumasta, jota pidetään yhtenä askeleena ihmisen nykyiseen genomiin? (Vastaa numeroilla)",
+        imagePrompt:
+          "A faintly glowing strand of human DNA, with a highlight on a specific region where two segments appear to have merged, representing a genetic crossroads.",
+        nextHintId: "hint10",
+      },
+
+      hint10: {
+        id: "hint10",
+        answer: "laschamp",
+        title: "Käänteinen Kompassi Muinaisuudessa",
+        description:
+          "Ihminen on oppinut seuraamaan neulan osoittamaa pohjoista, mutta vanhoissa laavakivissä säilyy toisenlainen tarina. On hetkiä, jolloin kompassimme olisi pettänyt täysin, ja aurinkotuulien myrsky olisi voinut pyyhkiä suojauksen pois. Ranskassa sijaitseva laavavirta on antanut tutkijoille vihjeen, että Maan varma pohjoinen saattoi kääntyä ylösalaisin. Paljon on kiistelty, millaisia vaikutuksia tällä oli eläimistöön ja ilmastoon.",
+        riddle:
+          "Ota selvää tästä noin 40 000–50 000 vuotta sitten ajoittuvasta omituisesta kaudesta, joka tunnetaan paikannimen perusteella. Sen jättämä jälki laavakivissä viittaa magneettiseen poikkeamaan, joka muutti hetkellisesti koko planeettamme ‘pohjois-etelä’-suuntia. Mikä on tuon merkillisen tapahtuman nimi?",
+        imagePrompt:
+          "A rugged ancient lava flow under starry skies, faint auroral lights flickering overhead, suggesting a world where magnetic north is not where we expect it to be.",
+        nextHintId: null,
+        finalAnswer: "laschamp",
       },
     },
   },
