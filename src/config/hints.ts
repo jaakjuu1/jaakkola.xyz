@@ -304,50 +304,50 @@ export const hintSets: Record<string, HintSet> = {
       },
       hint6: {
         id: "hint6",
-        answer: "luminoiva maakaasu",
-        title: "Fyysinen Ilmiö",
+        answer: "happi",
+        title: "Vihreän Valon Lähde",
         description:
-          "Suomalaisesta kulttuurista suuntaat tiedon laajoille kentille. On olemassa luonnonilmiö, joka esiintyy yötaivaalla, kun varautuneet hiukkaset törmäävät ilmakehän kaasuihin synnyttäen hohtavaa valoilmiötä. Se tunnetaan revontulina. Mutta mikä erityisesti aiheuttaa niiden vihreän hohteen? Etsi yksityiskohtaista tietoa.",
+          "Olet matkannut kulttuurin ja historian kautta taas taivaalle. Revontulet ovat kiehtoneet ihmisiä kautta aikojen, mutta niiden salaisuus piilee ylempänä ilmakehässä tapahtuvissa monimutkaisissa hiukkasprosesseissa. Nyt on aika selvittää, mikä alkuaine antaa revontulille niiden tutun vihreän sävyn.",
         riddle:
-          "Internet kertoo, että revontulien yleisin väri, vihreä, syntyy elektronien törmätessä tietyn kaasuosan kanssa ylempänä ilmakehässä. Mikä tämä kaasu on, joka ionisoituneena luo vihreän hohteen?",
+          "Revontulien vihreä väri syntyy noin 100–200 kilometrin korkeudessa, kun Auringosta saapuvat varautuneet hiukkaset törmäävät ilmakehän kaasuihin. Etsi internetistä tieto siitä, minkä alkuaineen virittyneet atomit lähettävät tuota noin 557,7 nanometrin aallonpituuden vihreää valoa. Mikä tämä alkuaine on?",
         imagePrompt:
-          "A breathtaking view of the northern lights shimmering in green curtains across a snowy Finnish landscape, silent pine forests below.",
+          "A breathtaking night sky scene over a northern landscape, with vibrant green auroras rippling across the starry heavens, illuminating a silent snowy forest.",
         nextHintId: "hint7",
       },
       hint7: {
         id: "hint7",
-        answer: "tyrantti liskoelain",
-        title: "Muinaiset Mysteerit",
+        answer: "tyrannosaurus",
+        title: "Muinaiset Valtiaat",
         description:
-          "Avaruudesta ja luonnonilmiöistä siirrytään aikaan ennen ihmisiä, jolloin maata hallitsivat jättimäiset olennot. Maailman tunnetuimpiin dinosauruksiin kuuluu yksi, jonka nimi merkitsee 'tyranniliskokuningasta'. Nyt sinun tulee etsiä tämän olennon nimen etymologia.",
+          "Olet kulkenut tähdistä ja luonnonilmiöistä ajassa taaksepäin, aikakauteen jolloin jättiläispedot hallitsivat maata. Paleontologian varhaisvuosina löydettiin hirmulisko, joka kohosi ruokaketjun huipulle. Sen nimessä yhdistyvät kreikankieliset sanat, jotka kuvastavat sen mahtia, mutta harva pysähtyy pohtimaan näiden juurien merkitystä.",
         riddle:
-          "Tunnettu dinosaurus, jonka nimen alkuperä juontaa kreikasta 'tyrannilisko' ja 'kuningas'. Mikä on tämä kuuluisa peto, joka kantaa näitä merkityksiä nimessään?",
+          "Tutki paleontologian historiaa ja dinosaurusten nimiä. Etsi yksi tunnetuimmista lihansyöjädinosauruksista, jonka nimi on yhdistelmä kreikan sanoja, joista toinen tarkoittaa 'hirmuvaltias' ja toinen 'lisko'. Mikä on tämä dinosauruksen nimi, ja mitä sen nimiosat kertovat sen asemasta muinaisten maailmojen valtiaana?",
         imagePrompt:
-          "A dramatic prehistoric scene with a massive Tyrannosaurus Rex roaring under a volcanic sky, ancient fern forests and giant cycads in the background.",
+          "A dramatic Cretaceous scene: a massive, bipedal predator with powerful jaws stalking a lush, fern-covered valley beneath a dusky sky, while smaller dinosaurs scatter in the distance.",
         nextHintId: "hint8",
       },
       hint8: {
         id: "hint8",
-        answer: "normandian maihinnousu",
-        title: "Historian Merkkipaalu",
+        answer: "operation paperclip",
+        title: "Sodan Jälkeiset Varjot",
         description:
-          "Muinaisista olennoista suurten sivilisaatioiden koitoksiin. Nyt etsitään modernin historian käännekohtaa. Vuonna 1944 liittoutuneet aloittivat operaation, joka muutti toisen maailmansodan kulun ratkaisevasti. Tämä tapahtui Euroopan rannikolla ja siitä tuli merkittävä hetki kohti rauhaa.",
+          "Ajanvirrassa olet siirtynyt hetkeen, jolloin toinen maailmansota on päättynyt ja Euroopan näyttämöä siivotaan raunioista. Mutta sodan jälkimainingeissa ei vain etsitty rauhaa: kulisseissa tapahtui muutakin. Eräässä Yhdysvaltain salaisessa hankkeessa tiedemiehiä, joilla oli kiistanalainen menneisyys, tuotiin uudelle mantereelle. Ratkaisemalla tämän arvoituksen kohtaat historian varjopuolen, joka on jäänyt pitkään hämärän peittoon.",
         riddle:
-          "Etsi internetistä liittoutuneiden suuri maihinnousuoperaatio vuonna 1944, joka tapahtui Ranskan rannikolla ja aloitti länsirintaman vapauttamisen natsi-Saksan hallinnasta. Miksi tätä historiallista tapahtumaa kutsutaan?",
+          "Sodan päätyttyä eräs salainen amerikkalaisoperaatio käynnistyi. Sen tarkoitus oli siirtää saksalaisia tiedemiehiä, usein natsi-Saksan entisiä asiantuntijoita, Yhdysvaltoihin kehittämään huipputeknologiaa. Selvitä internetin avulla, millä nimellä tämä salainen hanke tunnetaan. Vastaustasi etsiessäsi kiinnitä huomiota nimiin, kuten Wernher von Braun, ja yhteyksiin Yhdysvaltain avaruusohjelmaan.",
         imagePrompt:
-          "A somber, overcast seascape on the coast of Normandy, WWII landing crafts approaching the shore, soldiers in silhouette pressing forward.",
+          "A dimly lit, 1940s-era office with classified documents scattered on a wooden desk, a faded American flag in the background, and silhouettes of scientists in suits and hats.",
         nextHintId: "hint9",
       },
       hint9: {
         id: "hint9",
-        answer: "hubble-laki",
-        title: "Kosmisen Laajenemisen Salaisuus",
+        answer: "kaksoisrakokoe",
+        title: "Valon ja Aineen Salatut Kaksi Kasvoa",
         description:
-          "Historia on ohjannut ihmiskuntaa eteenpäin, mutta palataan nyt avaruuden äärettömyyteen. Universumi laajenee, ja tästä laajenemisesta on matemaattinen suhteellisuus havaintojen ja etäisyyksien perusteella. Eräs amerikkalainen tähtitieteilijä havaitsi galaksien loittonevan toisistaan, ja hänen mukaansa nimetty laki kuvaa nopeutta, jolla universumi kasvaa.",
+          "Sodat ja imperiumit jäävät varjoon, kun siirrytään todellisuuden syvimpiin rakenteisiin. Menneisyys, kulttuuri ja universumin laajeneminen ovat ihmisen käsitettävissä, mutta on yksi ilmiö, joka pakottaa meidät kyseenalaistamaan itse havaintojen ja olemassaolon luonteen. Valo, hiukkaset, aallot – mikä on todellisuuden perusta?",
         riddle:
-          "Mikä on se tähtitieteilijä Edwin Hubbleen liittyvä 'laki', joka kuvaa galaksien loittonevan toisistaan sitä nopeammin, mitä kauempana ne ovat?",
+          "Etsi eräs kokeellinen asetelma, jolla 1800-luvun alussa osoitettiin valon aaltoluonne, mutta joka myöhemmin osoittautui avainasemaan myös kvanttimekaniikan kehityksessä. Kun tämä koe toistettiin yksittäisillä hiukkasilla, tulos paljasti mysteerin: ainekin voi käyttäytyä kuin aalto, kunnes havaitsemme sen. Mikä on tämän historian kuuluisa koe?",
         imagePrompt:
-          "A deep-field image of countless galaxies, each a different shape and color, receding into the infinite blackness of space.",
+          "A subtle, abstract illustration of a laboratory setup with two narrow slits before a screen, faint interference patterns emerging as ghostly fringes of light and shadow.",
         nextHintId: "hint10",
       },
       hint10: {
